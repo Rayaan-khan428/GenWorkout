@@ -32,6 +32,7 @@ export async function generateWorkoutWithAI(plan: WorkoutPlan): Promise<WorkoutP
     Create a workout plan with these specifications:
     - Days per week: ${plan.daysPerWeek}
     - Experience level: ${plan.experience}
+    - Sex: ${plan.sex}
     - Goals: ${plan.goals}
     - Focus areas: ${plan.preferences.focusAreas.join(', ')}
     - Session duration: ${plan.preferences.sessionDuration} minutes
@@ -42,7 +43,13 @@ export async function generateWorkoutWithAI(plan: WorkoutPlan): Promise<WorkoutP
     Sets per exercise based on experience:
     ${plan.experience === 'beginner' ? '3' : plan.experience === 'intermediate' ? '4' : '5'} sets per exercise
 
-    IMPORTANT: Respond ONLY with a JSON object in this exact format:
+    IMPORTANT:
+    - Consider physiological differences when designing the workout plan based on the person's sex
+    - For female clients, consider factors like different fat distribution patterns, typically higher body fat percentage, and potentially different strength-to-weight ratios
+    - For male clients, consider factors like different muscle distribution and typically higher natural testosterone levels
+    - If 'prefer_not_to_say' was selected, create a balanced program without sex-specific elements
+
+    Respond ONLY with a JSON object in this exact format:
     {
       "workouts": [
         {

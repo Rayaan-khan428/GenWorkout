@@ -8,6 +8,7 @@ export const workoutSchema = z.object({
   experience: z.enum(["beginner", "intermediate", "advanced"]),
   daysPerWeek: z.number().min(1).max(7),
   workoutSplit: z.string(),
+  sex: z.enum(["male", "female", "prefer_not_to_say"]),
   preferences: z.object({
     focusAreas: z.array(z.string()),
     excludedExercises: z.array(z.string()).optional(),
